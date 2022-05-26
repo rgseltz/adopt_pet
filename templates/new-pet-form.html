@@ -4,11 +4,14 @@
 {% block content %}
 <h1>Add a Pet</h1>
 <form method="POST">
+    {{form.hidden_tag()}}
     {% for field in form if field.widget.input_type != 'hidden' %}
     <div>
     {{field.label}}
     {{field}}
     </div>
     {% endfor %}
+    <button class = "btn btn-success">Add Pet</button>
+    <button class = "btn btn-danger">Back</button>
 </form>
 {% endblock %}

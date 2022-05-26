@@ -4,7 +4,7 @@ from wtforms.validators import InputRequired, Optional
 
 class NewPetForm(FlaskForm):
     name = StringField("Pet Name")
-    species = StringField("Pet Species")
+    species = SelectField("Pet Species", choices=[('cat', 'Cat'), ('dog', 'Dog'), ('pkp', 'Porcupine')])
     photo_url = StringField("Input link of pet picture")
     age = IntegerField("Age (in years)")
     notes = TextAreaField("Tell us more about your pet")
