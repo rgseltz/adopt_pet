@@ -1,12 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    {% block content %}{% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Pets{% endblock %}
+
+{% block content %}
+<h1>Pet Adoption</h1>
+
+<h2>Pets Available:</h2>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Species</th>
+        <th>Age</th>
+        <th>Notes</th>
+        <th>Available</th>
+        <th>Photo</th>
+    </thead>
+    {% for pet in pets %}
+    <tbody>
+        
+        <td>{{pet.name}}</td>
+        <td>{{pet.species}}</td>
+        <td>{{pet.age}}</td>
+        <td>{{pet.notes}}</td>
+            {% if pet.available %}
+            <td>{{Available}}</td>
+            {% else %}
+            <td>{{Unavailable}}</td>
+            {% endif %}
+        <td>{{pet.photo_url}}</td>
+        
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock %}
