@@ -3,5 +3,12 @@
 
 {% block content %}
 <h1>Add a Pet</h1>
-
+<form method="POST">
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    <div>
+    {{field.label}}
+    {{field}}
+    </div>
+    {% endfor %}
+</form>
 {% endblock %}

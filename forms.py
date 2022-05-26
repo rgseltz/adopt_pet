@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import InputRequired, Optional
 
-class PetForm(FlaskForm):
+class NewPetForm(FlaskForm):
     name = StringField("Pet Name")
     species = StringField("Pet Species")
     photo_url = StringField("Input link of pet picture")
