@@ -14,4 +14,8 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
+@app.route('/')
+def list_pets():
+    pets = Pet.query.all()
+    return render_template('home.html', pets=pets)
 
