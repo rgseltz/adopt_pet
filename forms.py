@@ -8,4 +8,9 @@ class NewPetForm(FlaskForm):
     photo_url = StringField("Input link of pet picture")
     age = IntegerField("Age (in years)")
     notes = TextAreaField("Tell us more about your pet")
+    
+class UpdatePetForm(FlaskForm):   
+    photo_url = StringField("Input link of pet picture")
+    notes = TextAreaField("Tell us more about your pet")
+    available = BooleanField("Available for adoption")
 

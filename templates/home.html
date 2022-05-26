@@ -17,7 +17,7 @@
     {% for pet in pets %}
     <tbody>
         
-        <td>{{pet.name}}</td>
+        <td><a href="/{{pet.id}}">{{pet.name}}</a></td>
         <td>{{pet.species}}</td>
         <td>{{pet.age}}</td>
         <td>{{pet.notes}}</td>
@@ -26,7 +26,7 @@
             {% else %}
             <td>{{Unavailable}}</td>
             {% endif %}
-        <td>{{pet.photo_url}}</td>
+        <td><img src="{{pet.photo_url}}" width="100" height="100" alt=" "></td>
     </tbody>
     {% endfor %}
 </table>
