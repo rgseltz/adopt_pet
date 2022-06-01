@@ -15,12 +15,14 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
+
 @app.route('/')
 def list_pets():
     pets = Pet.query.all()
     return render_template('home.html', pets=pets)
 
-@app.route('/pets/new', methods = ["GET", "POST"])
+
+@app.route('/pets/new', methods=["GET", "POST"])
 def add_pet_form():
     form = NewPetForm()
     if form.validate_on_submit():
@@ -29,23 +31,26 @@ def add_pet_form():
         photo_url = form.photo_url.data
         age = form.age.data
         notes = form.notes.data
-        pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes)
+        pet = Pet(name=name, species=species,
+                  photo_url=photo_url, age=age, notes=notes)
         db.session.add(pet)
         db.session.commit()
         return redirect('/')
     else:
         return render_template('new-pet-form.html', form=form)
-    
+
+
 @app.route('/<int:pet_id>', methods=["GET"])
 def show_pet(pet_id):
     pet = Pet.query.get_or_404(pet_id)
-    form = UpdatePetForm()        
+    form = UpdatePetForm(obj=pet)
     return render_template('pet-detail.html', pet=pet, form=form)
+
 
 @app.route('/<int:pet_id>', methods=["POST"])
 def update_pet(pet_id):
     pet = Pet.query.get_or_404(pet_id)
-    form = UpdatePetForm()
+    form = UpdatePetForm(obj=pet)
     if form.validate_on_submit:
         pet.photo_url = form.photo_url.data
         pet.notes = form.notes.data
@@ -53,5 +58,5 @@ def update_pet(pet_id):
         db.session.add(pet)
         db.session.commit()
         return redirect(f'/')
-    else:        
+    else:
         return render_template('pet-detail.html', pet=pet)
